@@ -20,7 +20,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
         String token = usuarioService.autenticar(request.getEmail(), request.getSenha());
-        Usuario usuario = UsuarioRepository.findByEmail(request.getEmail()).orElseThrow();
+        Usuario usuario = usuarioRepository.findByEmail(request.getEmail()).orElseThrow();
         return ResponseEntity.ok(new LoginResponse(token, usuario.getNome()));
     }
 
