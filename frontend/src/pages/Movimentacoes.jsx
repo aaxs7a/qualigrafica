@@ -6,6 +6,12 @@ import dayjs from 'dayjs';
 
 export default function Movimentacoes() {
 
+    const [ insumos, setInsumos ] = useState([]);
+    const [ movimentacoes, setMovimentacoes ] = useState([]);
+    const [ insumoSelecionado, setInsumoSelecionado ] = useState(null);
+    const [ form ] = Form.useForm();
+    const navigate = useNavigate();
+
     async function carregarInsumos() {
 
         try {
@@ -27,7 +33,7 @@ export default function Movimentacoes() {
         try {
 
             const response = await api.get(`/movimentacoes/insumo/${insumoId}`);
-            setMovimentacoes(respone.data);
+            setMovimentacoes(response.data);
 
         } catch {
 
@@ -37,18 +43,16 @@ export default function Movimentacoes() {
 
     }
 
-    useEffect(() => { carregarInsumos() }, []);
-
     async function registrar(values) {
 
         try {
 
-            await api.get('/movimentacoes', {
+            await api.post('/movimentacoes', {
 
                 insumo: { id: values.insumoId },
                 tipo: values.tipo,
                 quantidade: values.quantidade,
-                dataMovimentacao: values.data.format('DD-MM-YYYY'),
+                dataMovimentacao: values.data.format('YYYY-MM-DD'),
 
             });
 
@@ -65,11 +69,13 @@ export default function Movimentacoes() {
 
     }
 
+    useEffect(() => { carregarInsumos() }, []);
+
     const colunas = [
 
         { title: 'Tipo', dataIndex: 'tipo', key: 'tipo', align: 'center' },
         { title: 'Quantidade', dataIndex: 'quantidade', key: 'quantidade', align: 'center' },
-        { title: 'Data', dataIndex: 'data', key: 'data', align: 'center' },
+        { title: 'Data', dataIndex: 'dataMovimentacao', key: 'dataMovimentacao', align: 'center' },
 
     ];
 
@@ -123,7 +129,7 @@ export default function Movimentacoes() {
                     <Select options={[
 
                         { label: 'Entrada', value: 'ENTRADA' },
-                        { label: 'Saída', value: 'SAÍDA' },
+                        { label: 'Saída', value: 'SAIDA' },
 
                     ]} />
 
