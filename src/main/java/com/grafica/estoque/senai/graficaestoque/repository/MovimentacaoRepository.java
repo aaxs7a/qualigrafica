@@ -10,4 +10,5 @@ public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Long
 
     List<Movimentacao> findByInsumoIdOrderByDataMovimentacaoDesc(Long insumoId);
 
+    void deleteByInsumoId(Long id);
 }

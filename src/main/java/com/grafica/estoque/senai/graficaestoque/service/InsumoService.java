@@ -2,6 +2,8 @@ package com.grafica.estoque.senai.graficaestoque.service;
 
 import com.grafica.estoque.senai.graficaestoque.model.Insumo;
 import com.grafica.estoque.senai.graficaestoque.repository.InsumoRepository;
+import com.grafica.estoque.senai.graficaestoque.repository.MovimentacaoRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 public class InsumoService {
 
     private final InsumoRepository insumoRepository;
+    private final MovimentacaoRepository movimentacaoRepository;
 
     public List<Insumo> listarTodos() {
 
@@ -38,8 +41,10 @@ public class InsumoService {
 
     }
 
+    @Transactional
     public void deletar(Long id) {
 
+        movimentacaoRepository.deleteByInsumoId(id);
         insumoRepository.deleteById(id);
 
     }

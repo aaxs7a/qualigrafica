@@ -1,6 +1,8 @@
 package com.grafica.estoque.senai.graficaestoque.controller;
 
 import com.grafica.estoque.senai.graficaestoque.model.Movimentacao;
+import com.grafica.estoque.senai.graficaestoque.model.Usuario;
+import com.grafica.estoque.senai.graficaestoque.repository.UsuarioRepository;
 import com.grafica.estoque.senai.graficaestoque.service.MovimentacaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.config.ResourceReaderRepositoryPopulatorBeanDefinitionParser;
@@ -14,12 +16,18 @@ import java.util.List;
 public class MovimentacaoController {
 
     private final MovimentacaoService movimentacaoService;
+    private final UsuarioRepository usuarioRepository;
 
     @PostMapping
-    public  ResponseEntity<Movimentacao> registrar( @RequestBody Movimentacao movimentacao ) {
+    public ResponseEntity<Movimentacao> registrar(@RequestBody Movimentacao movimentacao,
+                                                  org.springframework.security.core.Authentication authentication) {
+        String email = authentication.getName();
 
-        return ResponseEntity.ok(movimentacaoService.registrar( movimentacao ));
+        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow();
 
+        movimentacao.setUsuario(usuario);
+
+        return ResponseEntity.ok(movimentacaoService.registrar(movimentacao));
     }
 
     @GetMapping("/insumo/{insumoId}")

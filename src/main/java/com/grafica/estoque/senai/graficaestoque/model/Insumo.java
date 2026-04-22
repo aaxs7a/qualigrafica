@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "Insumo" )
+@Table(name = "insumo" )
 
 public class Insumo {
 
@@ -22,7 +22,7 @@ public class Insumo {
 
     private String gramatura;
 
-    @Column(name = "unidade medida" )
+    @Column(name = "unidade_medida" )
     private String unidadeMedida;
 
     @Column(name = "qtd_atual" )
