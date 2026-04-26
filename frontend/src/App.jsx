@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./contexts/AuthContext.jsx";
+import { ConfigProvider } from "antd";
 import Login from "./pages/Login.jsx";
 import Dashboard from './pages/Dashboard.jsx';
 import Insumos from './pages/Insumos.jsx';
@@ -15,16 +16,22 @@ function RotaProtegida({ children }) {
 function App() {
 
     return (
+        <ConfigProvider
+                theme={{
+                    token: {
+                        fontFamily: "'Sora', sans-serif",
+                    },
+                }}
+            >
+            <AuthProvider>
 
-        <AuthProvider>
+                <BrowserRouter>
 
-            <BrowserRouter>
+                    <Routes>
 
-                <Routes>
+                        <Route path="/" element={ <Login /> } />
 
-                    <Route path="/" element={ <Login /> } />
-
-                    <Route path="dashboard" element={
+                        <Route path="dashboard" element={
 
                         <RotaProtegida><Dashboard /></RotaProtegida>
 
@@ -42,12 +49,12 @@ function App() {
 
                     } />
 
-                </Routes>
+                    </Routes>
 
-            </BrowserRouter>
+                </BrowserRouter>
 
-        </AuthProvider>
-
+            </AuthProvider>
+        </ConfigProvider>
     );
 
 }
