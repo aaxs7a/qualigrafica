@@ -145,7 +145,7 @@ export default function Movimentacoes() {
 
                 <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: 12, padding: 28, boxShadow: "0 1px 6px rgba(0,0,0,0.04)", marginBottom: 24 }}>
 
-                    <Form form={form} layout="vertical" onFinish={registrar}>
+                    <Form form={form} layout="vertical" onFinish={registrar} requiredMark={false}>
 
                         <Form.Item label="Insumo" name="insumoId" rules={[{ required: true }]}>
 

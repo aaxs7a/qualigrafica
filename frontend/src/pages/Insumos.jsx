@@ -230,7 +230,7 @@ export default function Insumos() {
                 okButtonProps={{ style: { background: "#1E3A5F", border: "none" } }}
             >
 
-                <Form form={form} layout="vertical" onFinish={salvar}>
+                <Form form={form} layout="vertical" onFinish={salvar} requiredMark={false}>
 
                     <Form.Item label="Nome" name="nome" rules={[{ required: true }]}>
                         <Input />
