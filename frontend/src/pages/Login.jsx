@@ -13,12 +13,9 @@ export default function Login() {
         try {
 
             const response = await api.post("/auth/login", {
-
                 email: values.email,
                 senha: values.senha,
-
             });
-
             login(response.data.token, response.data.nomeUsuario);
             navigate("/dashboard");
 
@@ -31,106 +28,86 @@ export default function Login() {
     }
 
     return (
-
         <div style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             minHeight: "100vh",
-            background: "#f5f5f5",
-
+            background: "#1A1D21",
+            padding: "16px",
         }}>
 
             <div style={{
-                background: "#fff",
-                borderRadius: 12,
+                background: "#2C3035",
+                borderRadius: 16,
                 padding: "48px 40px",
-                width: 400,
-                boxShadow: "0 2px 24px rgba(0,0,0,0.08)",
-                border: "1px solid #e8e8e8",
-
+                width: "100%",
+                maxWidth: 420,
+                boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+                border: "1px solid rgba(0,255,194,0.1)",
             }}>
 
                 <div style={{ textAlign: "center", marginBottom: 36 }}>
+                    <img
+                        src="/favicon2qualigrafica.png"
+                        alt="QualiGráfica"
+                        style={{ width: 56, height: 56, borderRadius: 12, objectFit: "contain", marginBottom: 16 }}
+                    />
 
-                    <div style={{
-                        width: 48, height: 48,
-                        background: "#1E3A5F",
-                        borderRadius: 10,
-                        display: "inline-flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginBottom: 16,
-
-                    }}>
-
-                        <span style={{ color: "#fff", fontSize: 22, fontWeight: 700 }}>G</span>
-
-                    </div>
-
-
-
-                    <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, color: "#1E3A5F" }}>
-
+                    <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, color: "#ECECEC" }}>
                         QualiGráfica
-
                     </h1>
 
-                    <p style={{ margin: "4px 0 0", color: "#888", fontSize: 13 }}>
 
+                    <p style={{ margin: "6px 0 0", color: "#888", fontSize: 13 }}>
                         Sistema de Controle de Estoque
-
                     </p>
 
                 </div>
 
-
-
                 <Form layout="vertical" onFinish={handleSubmit} requiredMark={false}>
-
                     <Form.Item
-
-                        label={<span style={{ fontWeight: 500, color: "#333" }}>E-mail</span>}
+                        label={<span style={{ fontWeight: 500, color: "#ECECEC" }}>E-mail</span>}
                         name="email"
                         rules={[{ required: true, message: "Informe o e-mail." }]}
-
                     >
 
                         <Input
-
                             placeholder="seu@email.com"
                             size="large"
-                            style={{ borderRadius: 8 }}
+                            style={{
+                                borderRadius: 8,
+                                background: "#1A1D21",
+                                border: "1px solid rgba(0,255,194,0.2)",
+                                color: "#ECECEC",
+                            }}
 
                         />
 
                     </Form.Item>
-
-
 
                     <Form.Item
-
-                        label={<span style={{ fontWeight: 500, color: "#333" }}>Senha</span>}
+                        label={<span style={{ fontWeight: 500, color: "#ECECEC" }}>Senha</span>}
                         name="senha"
                         rules={[{ required: true, message: "Informe a senha." }]}
-
                     >
-                        <Input.Password
 
+                        <Input.Password
                             placeholder="••••••••"
                             size="large"
-                            style={{ borderRadius: 8 }}
+                            style={{
+                                borderRadius: 8,
+                                background: "#1A1D21",
+                                border: "1px solid rgba(0,255,194,0.2)",
+                                color: "#ECECEC",
+                            }}
 
                         />
 
                     </Form.Item>
 
-
-
-                    <Form.Item style={{ marginTop: 24, marginBottom: 0 }}>
-
+                    <Form.Item style={{ marginTop: 28, marginBottom: 0 }}>
                         <Button
-
                             type="primary"
                             htmlType="submit"
                             block
@@ -138,15 +115,14 @@ export default function Login() {
                             style={{
                                 borderRadius: 8,
                                 fontWeight: 600,
-                                background: "#1E3A5F",
+                                background: "#00FFC2",
                                 border: "none",
-                                height: 44,
+                                color: "#1A1D21",
+                                height: 46,
+                                fontSize: 15,
                             }}
-
                         >
-
                             Entrar
-
                         </Button>
 
                     </Form.Item>
